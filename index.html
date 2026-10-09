@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnMate AI | SDG 4</title>
+<style>
+:root{--navy:#17365d;--blue:#2878b5;--light:#eef5fb;--ink:#1f2937;--muted:#667085;--green:#17805d}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eef5fb,#f8fbff);line-height:1.5}
+header{background:var(--navy);color:white;padding:22px 7%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-size:1.35rem;font-weight:700}.tag{font-size:.9rem;opacity:.9}
+.hero{padding:46px 7% 28px;max-width:1200px;margin:auto}.badge{display:inline-block;background:#d9f3e8;color:#116149;border-radius:30px;padding:6px 12px;font-size:.85rem;font-weight:bold}
+h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;color:var(--navy);margin:16px 0}
+.hero p{max-width:720px;color:var(--muted);font-size:1.05rem}
+main{max-width:1200px;margin:0 auto;padding:0 7% 50px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.card{background:white;border:1px solid #dce6ef;border-radius:18px;padding:24px;box-shadow:0 8px 25px #17365d0b}
+h2{font-size:1.25rem;color:var(--navy);margin:0 0 15px}
+label{display:block;font-weight:700;font-size:.92rem;margin:13px 0 6px}
+select,textarea,input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:#fff}
+textarea{min-height:100px;resize:vertical}
+button{border:0;border-radius:10px;background:var(--blue);color:white;padding:12px 16px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:14px}
+button:hover{filter:brightness(.94)}.secondary{background:#eaf2f8;color:var(--navy);margin-left:6px}
+.result{margin-top:18px;background:#f5f9fd;border-left:4px solid var(--blue);padding:15px;border-radius:8px;white-space:pre-wrap}
+.hidden{display:none}.feature{display:flex;gap:12px;margin:16px 0}.icon{width:38px;height:38px;display:grid;place-items:center;background:var(--light);border-radius:10px;flex-shrink:0}
+.small{font-size:.88rem;color:var(--muted)}.quiz-option{display:block;margin:8px 0;padding:10px;border:1px solid #d8e2ec;border-radius:9px;cursor:pointer}.quiz-option input{width:auto;margin-right:8px}
+footer{text-align:center;padding:22px;color:var(--muted);font-size:.85rem}
+@media(max-width:800px){main{grid-template-columns:1fr}.hero{padding-top:32px}}
+</style>
+</head>
+<body>
+<header><div class="brand">📘 LearnMate AI</div><div class="tag">A student prototype supporting SDG 4: Quality Education</div></header>
+<section class="hero">
+<span class="badge">UN Sustainable Development Goal 4</span>
+<h1>Learning support, made<br>simple and accessible.</h1>
+<p>LearnMate is a demonstration of a personalized learning assistant. Choose a topic, get a clear explanation, and check your understanding with a short quiz. It is designed to support—not replace—teachers.</p>
+</section>
+<main>
+<section class="card">
+<h2>📚 Learn a Topic</h2>
+<p class="small">Select a sample topic and generate a beginner-friendly explanation.</p>
+<label for="subject">Subject</label>
+<select id="subject"><option value="science">Science</option><option value="math">Mathematics</option><option value="computers">Computer Science</option></select>
+<label for="topic">Topic</label>
+<select id="topic">
+<option value="photosynthesis">Photosynthesis</option><option value="fractions">Fractions</option><option value="algorithms">Algorithms</option>
+</select>
+<label for="level">Learning level</label>
+<select id="level"><option>Beginner</option><option>Intermediate</option></select>
+<button onclick="teach()">Explain this topic</button>
+<div id="lesson" class="result hidden" aria-live="polite"></div>
+</section>
+<section class="card">
+<h2>🧠 Quick Knowledge Check</h2>
+<p class="small">Try a sample question and receive immediate feedback.</p>
+<div id="quiz">
+<p><b>Which statement best describes an algorithm?</b></p>
+<label class="quiz-option"><input type="radio" name="answer" value="a"> A type of computer screen</label>
+<label class="quiz-option"><input type="radio" name="answer" value="b"> A step-by-step procedure to solve a problem</label>
+<label class="quiz-option"><input type="radio" name="answer" value="c"> A computer storage device</label>
+<button onclick="checkAnswer()">Check answer</button>
+<button class="secondary" onclick="resetQuiz()">Try again</button>
+</div>
+<div id="feedback" class="result hidden" aria-live="polite"></div>
+</section>
+<section class="card">
+<h2>🌱 How this supports SDG 4</h2>
+<div class="feature"><div class="icon">🎯</div><div><b>Self-paced learning</b><br><span class="small">Students can review a topic at a pace that suits them.</span></div></div>
+<div class="feature"><div class="icon">💬</div><div><b>Simple explanations</b><br><span class="small">Learning content is broken into clear, manageable ideas.</span></div></div>
+<div class="feature"><div class="icon">✅</div><div><b>Practice and feedback</b><br><span class="small">A short quiz helps students check their understanding.</span></div></div>
+<div class="feature"><div class="icon">🌍</div><div><b>Inclusive access</b><br><span class="small">The concept can be extended with regional-language support and low-bandwidth access.</span></div></div>
+</section>
+<section class="card">
+<h2>💡 Future Improvements</h2>
+<ul>
+<li>Add more school and college subjects.</li>
+<li>Introduce verified AI-generated explanations with teacher review.</li>
+<li>Add regional-language translation.</li>
+<li>Track quiz scores privately to recommend revision topics.</li>
+<li>Improve accessibility for mobile devices and slower internet.</li>
+</ul>
+<p class="small">Prototype note: this demo uses sample, pre-written content and a sample quiz. It does not connect to an AI service or store student data.</p>
+</section>
+</main>
+<footer>LearnMate AI • Student concept prototype • SDG 4: Quality Education</footer>
+<script>
+const lessons={
+ photosynthesis:"Photosynthesis is the process by which green plants make their own food. Plants use sunlight, water, and carbon dioxide to produce glucose (food) and release oxygen. Remember: sunlight + water + carbon dioxide → food + oxygen.",
+ fractions:"A fraction represents a part of a whole. In 3/4, the top number (3) is the numerator and tells how many parts are selected. The bottom number (4) is the denominator and tells how many equal parts make the whole.",
+ algorithms:"An algorithm is a clear, step-by-step set of instructions for solving a problem. For example, a recipe is like an algorithm: follow the steps in order to get the intended result."
+};
+function teach(){
+ const topic=document.getElementById('topic').value;
+ const level=document.getElementById('level').value;
+ const lesson=document.getElementById('lesson');
+ let extra=level==='Beginner'?"\n\nSimple example: "+(topic==='photosynthesis'?"A plant uses sunlight like energy to prepare its food.":topic==='fractions'?"If a pizza is cut into 4 equal slices and you eat 3, you ate 3/4.":"A recipe gives steps in order, just like an algorithm."):"\n\nStudy tip: write the key definition in your own words and make one example.";
+ lesson.textContent=lessons[topic]+extra;
+ lesson.classList.remove('hidden');
+}
+function checkAnswer(){
+ const selected=document.querySelector('input[name="answer"]:checked');
+ const feedback=document.getElementById('feedback');
+ if(!selected){feedback.textContent="Please select an answer first.";feedback.classList.remove('hidden');return;}
+ feedback.textContent=selected.value==='b'?"Correct! An algorithm is a step-by-step procedure for solving a problem. Great work!":"Not quite. Review the options and try again. An algorithm is a step-by-step procedure for solving a problem.";
+ feedback.classList.remove('hidden');
+}
+function resetQuiz(){document.querySelectorAll('input[name="answer"]').forEach(x=>x.checked=false);document.getElementById('feedback').classList.add('hidden');}
+document.getElementById('topic').addEventListener('change',()=>document.getElementById('lesson').classList.add('hidden'));
+</script>
+</body>
+</html>
